@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Get current forecase",
+			"name": "Get current forecast",
 			"event": [
 				{
 					"listen": "test",
@@ -54,6 +54,64 @@
 						{
 							"key": "current",
 							"value": "temperature_2m,wind_speed_10m"
+						},
+						{
+							"key": "hourly",
+							"value": "temperature_2m,relative_humidity_2m,wind_speed_10m"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get last 10 days weather",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb1e6777-5b60-48a3-a6d8-5d1b4a646e2e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "8ecdd110-e5b4-450b-9196-d7b291241336",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&past_days=10&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m",
+					"protocol": "https",
+					"host": [
+						"api",
+						"open-meteo",
+						"com"
+					],
+					"path": [
+						"v1",
+						"forecast"
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "52.52"
+						},
+						{
+							"key": "longitude",
+							"value": "13.41"
+						},
+						{
+							"key": "past_days",
+							"value": "10"
 						},
 						{
 							"key": "hourly",
